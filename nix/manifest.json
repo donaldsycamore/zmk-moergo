@@ -1,0 +1,166 @@
+[
+  {
+    "clone-depth": 1,
+    "name": "zephyr",
+    "revision": "68c11efba6e1eb2d689b3039553868b1b1c57f94",
+    "url": "https://github.com/zmkfirmware/zephyr",
+    "west-commands": "scripts/west-commands.yml",
+    "sha256": "1cn3pk9nc6ja9fn9hfd6hzwak7pxdri2zmdh2bzr6q6xr60qgi4p"
+  },
+  {
+    "clone-depth": 1,
+    "name": "uf2",
+    "path": "tools/uf2",
+    "revision": "a690c5a4d9abe393496b3ade88489d39da07b458",
+    "url": "https://github.com/microsoft/uf2",
+    "sha256": "056p8kcig1cncpswp9hz0d4q3181mcsjg6x2c7mhkh9ipsnjp5fh"
+  },
+  {
+    "name": "cmsis",
+    "path": "modules/hal/cmsis",
+    "revision": "c3bd2094f92d574377f7af2aec147ae181aa5f8e",
+    "url": "https://github.com/zephyrproject-rtos/cmsis",
+    "sha256": "0gqyplfcqw8ps5fpsglcxp98czw2p3q0laz9x0ggczqw66jfi5j9"
+  },
+  {
+    "name": "hal_atmel",
+    "path": "modules/hal/atmel",
+    "revision": "9f0a699a2f0253dc9688211ef696daa7b8fadb75",
+    "url": "https://github.com/zephyrproject-rtos/hal_atmel",
+    "sha256": "1qajql09cjvmaswgpr64xl1sizgg71g1kddpwkyy29lnpppz5nh3"
+  },
+  {
+    "name": "canopennode",
+    "path": "modules/lib/canopennode",
+    "revision": "468d350028a975b96563e58344de48281a0ab371",
+    "url": "https://github.com/zephyrproject-rtos/canopennode",
+    "sha256": "15dglyk9pgg50139zwjs58bhh0pcc3sqi18nfv84k3wm180yswxx"
+  },
+  {
+    "name": "civetweb",
+    "path": "modules/lib/civetweb",
+    "revision": "e6903b80c09d17cd1a8bb32e40080005558aad29",
+    "url": "https://github.com/zephyrproject-rtos/civetweb",
+    "sha256": "122k6f7miv92y3h05rsg2r26mz0pvk76n286lhvw252yrjdzgd1k"
+  },
+  {
+    "name": "hal_espressif",
+    "path": "modules/hal/espressif",
+    "revision": "895d99ed0902e8f3ddde7bdeb3a1fe2fa875b005",
+    "url": "https://github.com/zephyrproject-rtos/hal_espressif",
+    "west-commands": "west/west-commands.yml",
+    "sha256": "0aypy6hs8c4nljmprmvxha58yfqbmv4aqr9vj4gjlbj25pxzhiq3"
+  },
+  {
+    "name": "fatfs",
+    "path": "modules/fs/fatfs",
+    "revision": "1d1fcc725aa1cb3c32f366e0c53d7490d0fe1109",
+    "url": "https://github.com/zephyrproject-rtos/fatfs",
+    "sha256": "0i2wcb7id7v87856r7l9j1smmwqgv3smixwaa1bbcxxv15rn1rzq"
+  },
+  {
+    "name": "hal_nordic",
+    "path": "modules/hal/nordic",
+    "revision": "f0d54d8449acbee49b3cebcef0e3e56640c50277",
+    "url": "https://github.com/zephyrproject-rtos/hal_nordic",
+    "sha256": "05k9k6ii6fd8g0z3w93yzr5670zhafgab0kzzwyr23xv6f00hjcb"
+  },
+  {
+    "name": "hal_nuvoton",
+    "path": "modules/hal/nuvoton",
+    "revision": "b4d31f33238713a568e23618845702fadd67386f",
+    "url": "https://github.com/zephyrproject-rtos/hal_nuvoton",
+    "sha256": "0942ainpvf64878vkwh9sx4bgwzmf98d40wqa125qmczlbb0d7my"
+  },
+  {
+    "name": "hal_stm32",
+    "path": "modules/hal/stm32",
+    "revision": "cc8731dba4fd9c57d7fe8ea6149828b89c2bd635",
+    "url": "https://github.com/zephyrproject-rtos/hal_stm32",
+    "sha256": "0i5csywvnxpw15q2ajr0yz77yiw2g2cvs60h38hqwni239qn4kjg"
+  },
+  {
+    "name": "libmetal",
+    "path": "modules/hal/libmetal",
+    "revision": "9d4ee2c3cfd5f49861939447990f3b7d7bf9bf94",
+    "url": "https://github.com/zephyrproject-rtos/libmetal",
+    "sha256": "1j5gk5y3ncbmxak86h7kdp5sfa9qi33y1wqnaqg1hd8bpzkhkclx"
+  },
+  {
+    "name": "hal_quicklogic",
+    "path": "modules/hal/quicklogic",
+    "revision": "b3a66fe6d04d87fd1533a5c8de51d0599fcd08d0",
+    "url": "https://github.com/zephyrproject-rtos/hal_quicklogic",
+    "sha256": "0hk1x72kibaw3xkspy9822vh28ax3bk11b80qn8l4dwrm0wx34sy"
+  },
+  {
+    "name": "lvgl",
+    "path": "modules/lib/gui/lvgl",
+    "revision": "31acbaa36e9e74ab88ac81e3d21e7f1d00a71136",
+    "url": "https://github.com/zephyrproject-rtos/lvgl",
+    "sha256": "0h9z4hc1m2swnwid32knaf99p8wi7gp80rdfgclgj3gvhc8imnch"
+  },
+  {
+    "name": "mbedtls",
+    "path": "modules/crypto/mbedtls",
+    "revision": "24d84ecff195fb15c889d9046e44e4804d626c67",
+    "url": "https://github.com/zephyrproject-rtos/mbedtls",
+    "sha256": "144p09m5gm7ikj7qvvmb47h55np7dp3bbhczi6rybrzdzz21kns3"
+  },
+  {
+    "name": "open-amp",
+    "path": "modules/lib/open-amp",
+    "revision": "de1b85a13032a2de1d8b6695ae5f800b613e739d",
+    "url": "https://github.com/zephyrproject-rtos/open-amp",
+    "sha256": "083i8zgj1xjvkns7ngckp1j6pxh6rwhbin7z9jf1da0vn87wgij9"
+  },
+  {
+    "name": "sof",
+    "path": "modules/audio/sof",
+    "revision": "b5b772dd611879ee6309da38759def79fc7f33f1",
+    "url": "https://github.com/zephyrproject-rtos/sof",
+    "sha256": "1x81w78fzhf5irqwdr72rgmqhzd78ar07sm6cyvc7jhnirlczvaf"
+  },
+  {
+    "name": "tinycbor",
+    "path": "modules/lib/tinycbor",
+    "revision": "40daca97b478989884bffb5226e9ab73ca54b8c4",
+    "url": "https://github.com/zephyrproject-rtos/tinycbor",
+    "sha256": "1bb4dlwd5jwmx66jq20iq53n994r76k3b4xbyg2aff7wr6ig33df"
+  },
+  {
+    "name": "tinycrypt",
+    "path": "modules/crypto/tinycrypt",
+    "revision": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0",
+    "url": "https://github.com/zephyrproject-rtos/tinycrypt",
+    "sha256": "19d2q9y23yzz9i383q3cldjl3k5mryx9762cab23zy3ijdnmj2z6"
+  },
+  {
+    "name": "littlefs",
+    "path": "modules/fs/littlefs",
+    "revision": "9e4498d1c73009acd84bb36036ee5e2869112a6c",
+    "url": "https://github.com/zephyrproject-rtos/littlefs",
+    "sha256": "1h73iq7ym4gx5ayl6rc94l2fp7nyxbix9608lpba56ab13kk7pll"
+  },
+  {
+    "name": "mipi-sys-t",
+    "path": "modules/debug/mipi-sys-t",
+    "revision": "75e671550ac1acb502f315fe4952514dc73f7bfb",
+    "url": "https://github.com/zephyrproject-rtos/mipi-sys-t",
+    "sha256": "0p8mvbgrjv0q9z9ba79lmqbah1si4b7vla7c6ambmrmd53g5f3j3"
+  },
+  {
+    "name": "nrf_hw_models",
+    "path": "modules/bsim_hw_models/nrf_hw_models",
+    "revision": "a47e326ca772ddd14cc3b9d4ca30a9ab44ecca16",
+    "url": "https://github.com/zephyrproject-rtos/nrf_hw_models",
+    "sha256": "0025v5i9nxhhc0jjzbs6cb8ixmi0v2hfh0fv3k9kk7hvbyvnqfml"
+  },
+  {
+    "name": "tfm-mcuboot",
+    "path": "modules/tee/tfm-mcuboot",
+    "revision": "69344636bee1f18a6703dc5a8e7a0edfd8128d45",
+    "url": "https://github.com/zephyrproject-rtos/mcuboot",
+    "sha256": "1rf513dzxa60h9wkgk6rpirw2jc3hhj0k8jgc8yzbfj22bcm6cyg"
+  }
+]
