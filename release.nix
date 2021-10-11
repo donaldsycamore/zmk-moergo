@@ -3,6 +3,8 @@
 with pkgs;
 let
   zmkPkgs = (import ./default.nix { inherit pkgs; });
+  lambda  = (import ./lambda { inherit pkgs; });
+
   inherit (zmkPkgs) zmk zephyr;
 
   baseImage = dockerTools.buildImage {
@@ -32,23 +34,45 @@ let
     contents = lib.singleton (referToPackages "deps-refs" (zmk.buildInputs ++ zmk.nativeBuildInputs ++ zephyr.modules));
   };
 
-  compileScript = writeShellScriptBin "compileZmk" ''
+  zmkCompileScript = writeShellScriptBin "compileZmk" ''
     set -euo pipefail
     export PATH=${lib.makeBinPath (with pkgs; zmk.nativeBuildInputs)}:$PATH
     export CMAKE_PREFIX_PATH=${zephyr}
     cmake -G Ninja -S ${zmk.src}/app ${lib.escapeShellArgs zmk.cmakeFlags} "-DUSER_CACHE_DIR=/tmp/.cache"
     ninja
   '';
-in
-dockerTools.buildImage {
-  name = "zmk-builder";
-  tag = "latest";
-  fromImage = depsImage;
-  contents = [ compileScript pkgs.busybox ];
 
-  config = {
-    User = "deploy";
-    WorkingDir = "/data";
-    Cmd = [ compileScript ];
+  builderImage = dockerTools.buildImage {
+    name = "zmk-builder";
+    tag = "latest";
+    fromImage = depsImage;
+    contents = [ zmkCompileScript pkgs.busybox ];
+
+    config = {
+      User = "deploy";
+      WorkingDir = "/data";
+      Cmd = [ zmkCompileScript ];
+    };
   };
+
+  lambdaEntrypoint = writeShellScriptBin "lambdaEntrypoint" ''
+    set -euo pipefail
+    export PATH=${lib.makeBinPath [zmkCompileScript]}:$PATH
+    cd ${lambda.source}
+    ${lambda.bundleEnv}/bin/bundle exec aws_lambda_ric "app.LambdaFunction::Handler.process"
+  '';
+
+  lambdaImage = dockerTools.buildImage {
+    name = "zmk-builder-lambda";
+    tag = "latest";
+    fromImage = builderImage;
+    contents = [ lambdaEntrypoint ];
+    config = {
+      User = "deploy";
+      Cmd = [ "${lambdaEntrypoint}/bin/lambdaEntrypoint" ];
+    };
+
+  };
+in {
+  inherit builderImage lambdaImage zmkCompileScript lambdaEntrypoint;
 }
