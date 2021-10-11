@@ -61,7 +61,7 @@ stdenv.mkDerivation {
     "-DZEPHYR_MODULES=${lib.concatStringsSep ";" zephyr.modules}"
   ];
 
-  nativeBuildInputs = [ cmake ninja python dtc ];
+  nativeBuildInputs = [ cmake ninja python dtc gcc-arm-embedded ];
   buildInputs = [ zephyr ];
 
   installPhase = ''
