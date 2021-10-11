@@ -35,10 +35,15 @@ let
   };
 
   zmkCompileScript = writeShellScriptBin "compileZmk" ''
-    set -euo pipefail
+    set -eo pipefail
+    if [ ! -f "$1" ]; then
+      echo "Usage: compileZmk [file.keymap]" >&2
+      exit 1
+    fi
+    KEYMAP="$(realpath $1)"
     export PATH=${lib.makeBinPath (with pkgs; zmk.nativeBuildInputs)}:$PATH
     export CMAKE_PREFIX_PATH=${zephyr}
-    cmake -G Ninja -S ${zmk.src}/app ${lib.escapeShellArgs zmk.cmakeFlags} "-DUSER_CACHE_DIR=/tmp/.cache"
+    cmake -G Ninja -S ${zmk.src}/app ${lib.escapeShellArgs zmk.cmakeFlags} "-DUSER_CACHE_DIR=/tmp/.cache" "-DKEYMAP_FILE=$KEYMAP"
     ninja
   '';
 
@@ -47,12 +52,6 @@ let
     tag = "latest";
     fromImage = depsImage;
     contents = [ zmkCompileScript pkgs.busybox ];
-
-    config = {
-      User = "deploy";
-      WorkingDir = "/data";
-      Cmd = [ zmkCompileScript ];
-    };
   };
 
   lambdaEntrypoint = writeShellScriptBin "lambdaEntrypoint" ''
