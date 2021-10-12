@@ -8,10 +8,13 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
-#include <dt-bindings/zmk/outputs.h> 
+#include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/rgb.h>
 
 #define HYPER LC(LS(LG(LALT)))
+#define LOCK LG(LC(Q))
+#define JAPA LC(LS(J))
+#define ENGL LC(LS(SEMI))
 
 // layers
 #define DEFAULT 0
@@ -33,23 +36,23 @@
 
         // MAGIC is currently bound to the same as LAYER - these will be fixed later
         bindings = <
-          &kp F1      &kp F2      &kp F3      &kp F4      &kp F5                                                                                         &kp F6  &kp F7      &kp F8      &kp F9      &kp F10
-          &kp EQUAL   &kp N1      &kp N2      &kp N3      &kp N4      &kp N5                                                                     &kp N6  &kp N7  &kp N8      &kp N9      &kp N0      &kp MINUS
-          &kp TAB     &kp Q       &kp W       &kp E       &kp R       &kp T                                                                      &kp Y   &kp U   &kp I       &kp O       &kp P       &kp BSLH
-          &kp ESC     &kp A       &kp S       &kp D       &kp F       &kp G                                                                      &kp H   &kp J   &kp K       &kp L       &kp SEMI    &kp SQT
-          &kp GRAVE   &kp Z       &kp X       &kp C       &kp V       &kp B   &kp LSHFT   &kp LCTRL   &mo LOWER  &kp LGUI  &kp RCTRL &kp RSHFT   &kp N   &kp M   &kp COMMA   &kp DOT     &kp FSLH    &kp PG_UP
-          &mo LOWER   &kp HOME    &kp END     &kp LEFT    &kp RIGHT           &kp BSPC    &kp DEL     &kp LALT   &kp RALT  &kp RET  &kp SPACE            &kp UP  &kp DOWN    &kp LBKT    &kp RBKT    &kp PG_DN
+          &kp F1      &kp F2      &kp F3      &kp F4      &kp F5                                                                                          &kp F6  &kp F7      &kp F8      &kp F9      &kp F10
+          &kp EQUAL   &kp N1      &kp N2      &kp N3      &kp N4      &kp N5                                                                      &kp N6  &kp N7  &kp N8      &kp N9      &kp N0      &kp MINUS
+          &kp TAB     &kp Q       &kp W       &kp E       &kp R       &kp T                                                                       &kp Y   &kp U   &kp I       &kp O       &kp P       &kp BSLH
+          &kp ESC     &kp A       &kp S       &kp D       &kp F       &kp G                                                                       &kp H   &kp J   &kp K       &kp L       &kp SEMI    &kp SQT
+          &kp RET     &kp Z       &kp X       &kp C       &kp V       &kp B   &kp LALT    &kp LGUI    &kp HYPER  &mo LOWER  &kp RGUI &kp LCTRL    &kp N   &kp M   &kp COMMA   &kp DOT     &kp FSLH    &kp PG_UP
+          &mo LOWER   &kp GRAVE   &kp LOCK    &kp LEFT    &kp RIGHT           &kp BSPC    &kp DEL     &kp LSHIFT &kp RSHIFT &kp RET  &kp SPACE            &kp UP  &kp DOWN    &kp LBKT    &kp RBKT    &kp PG_DN
           >;
       };
 
       lower_layer {
         bindings = <
-          &bt BT_SEL 0      &bt BT_SEL 1        &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4                                                                                                         &none        &none        &none        &kp F11      &kp F12
-          &bt BT_CLR        &bt BT_CLR          &out OUT_USB    &out OUT_BLE    &out OUT_TOG    &none                                                                                   &none        &none        &none        &none        &none        &none
-          &bootloader       &rgb_ug RGB_TOG     &rgb_ug RGB_EFF &rgb_ug RGB_BRI &rgb_ug RGB_BRD &kp K_VOL_UP                                                                            &none        &none        &none        &none        &none        &bootloader
-          &reset            &none               &none           &none           &none           &kp K_VOL_DN                                                                            &none        &none        &none        &none        &none        &reset
-          &ext_power EP_ON  &ext_power EP_OFF   &none           &none           &none           &kp K_MUTE      &none       &kp HYPER   &none       &none       &none       &none       &none        &none        &none        &none        &none        &none
-          &none             &kp CAPS            &kp INS         &none           &none                           &none       &none       &none       &none       &none       &none                    &none        &none        &none        &none        &none
+          &bt BT_SEL 0      &bt BT_SEL 1        &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4                                                                                                         &trans       &trans       &trans       &kp F11      &kp F12
+          &bt BT_CLR        &out OUT_USB        &out OUT_BLE    &out OUT_TOG    &trans          &trans                                                                                  &trans       &trans       &trans       &trans       &trans       &trans
+          &bootloader       &rgb_ug RGB_TOG     &rgb_ug RGB_EFF &rgb_ug RGB_BRI &rgb_ug RGB_BRD &kp C_VOL_UP                                                                            &trans       &trans       &trans       &trans       &trans       &bootloader
+          &reset            &trans              &rgb_ug RGB_HUI &rgb_ug RGB_SAI &rgb_ug RGB_SPI &kp C_VOL_DN                                                                            &trans       &trans       &trans       &trans       &trans       &trans
+          &ext_power EP_ON  &ext_power EP_OFF   &rgb_ug RGB_HUD &rgb_ug RGB_SAD &rgb_ug RGB_SPD &kp C_MUTE      &kp JAPA    &kp ENGL    &trans      &trans      &trans      &trans      &trans       &trans       &trans       &trans       &trans       &trans
+          &trans            &kp CAPS            &kp INS         &kp HOME        &kp END                         &trans      &trans      &trans      &trans      &trans      &trans                   &kp PG_UP    &kp PG_DN    &trans       &trans       &trans
           >;
       };
     };
