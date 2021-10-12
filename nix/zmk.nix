@@ -1,8 +1,7 @@
 { stdenv, lib, buildPackages
 , cmake, ninja, dtc, gcc-arm-embedded
 , zephyr
-, board ? "glove80_board_lh"
-, shield ? "glove80_left"
+, board ? "glove80_lh"
 }:
 
 
@@ -23,7 +22,7 @@ let
 in
 
 stdenv.mkDerivation {
-  name = "zmk_${board}_${shield}";
+  name = "zmk_${board}";
 
   sourceRoot = "source/app";
 
@@ -52,7 +51,6 @@ stdenv.mkDerivation {
     # "-DZEPHYR_BASE=${zephyr}/zephyr"
     "-DBOARD_ROOT=boards"
     "-DBOARD=${board}"
-    "-DSHIELD=${shield}"
     "-DZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb"
     "-DGNUARMEMB_TOOLCHAIN_PATH=${gcc-arm-embedded}"
     # TODO: maybe just use a cross environment for this gcc
