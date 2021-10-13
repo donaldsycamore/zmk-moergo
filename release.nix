@@ -40,7 +40,7 @@ let
       echo "Usage: compileZmk [file.keymap]" >&2
       exit 1
     fi
-    KEYMAP="$(realpath $1)"
+    KEYMAP="$(${pkgs.busybox}/bin/realpath $1)"
     export PATH=${lib.makeBinPath (with pkgs; zmk.nativeBuildInputs)}:$PATH
     export CMAKE_PREFIX_PATH=${zephyr}
     cmake -G Ninja -S ${zmk.src}/app ${lib.escapeShellArgs zmk.cmakeFlags} "-DUSER_CACHE_DIR=/tmp/.cache" "-DKEYMAP_FILE=$KEYMAP"
