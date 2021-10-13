@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'tmpdir'
 require 'json'
 require 'base64'
@@ -5,11 +7,25 @@ require 'base64'
 module LambdaFunction
   class Handler
     class << self
+      # ALB event structure:
+      # {
+      #   "requestContext": { <snip> },
+      #   "httpMethod": "GET",
+      #   "path": "/",
+      #   "queryStringParameters": {parameters},
+      #   "headers": { <snip> },
+      #   "isBase64Encoded": false,
+      #   "body": "request_body"
+      # }
+      #
+      # Handle the single route: POST /compile
       def process(event:, context:)
-        http_method = event.dig('requestContext', 'http', 'method')
+        unless event['path'] == '/compile'
+          return error_response(404, error: "Unknown route: #{event['path']}")
+        end
 
-        unless http_method == 'POST'
-          return error_response(400, error: "Unexpected HTTP method: #{http_method}")
+        unless event['httpMethod'] == 'POST'
+          return error_response(404, error: "No route for HTTP method : #{event['httpMethod']}")
         end
 
         keymap_data = event['body']
@@ -61,6 +77,7 @@ module LambdaFunction
         {
           'isBase64Encoded' => true,
           'statusCode' => 200,
+          'statusDescription' => '200 OK',
           'body' => file64,
           'headers' => {
             'content-type' => 'application/octet-stream'
@@ -72,6 +89,7 @@ module LambdaFunction
         {
           'isBase64Encoded' => false,
           'statusCode' => code,
+          'statusDescription' => code.to_s,
           'body' => { error: error, detail: detail }.to_json,
           'headers' => {
             'content-type' => 'application/json'
