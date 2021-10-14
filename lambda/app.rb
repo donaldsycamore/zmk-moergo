@@ -72,7 +72,7 @@ module LambdaFunction
       end
 
       def file_response(file)
-        file64 = Base64.encode64(file)
+        file64 = Base64.strict_encode64(file)
 
         {
           'isBase64Encoded' => true,
