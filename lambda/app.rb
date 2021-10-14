@@ -77,10 +77,9 @@ module LambdaFunction
         {
           'isBase64Encoded' => true,
           'statusCode' => 200,
-          'statusDescription' => '200 OK',
           'body' => file64,
           'headers' => {
-            'content-type' => 'application/octet-stream'
+            'Content-Type' => 'application/octet-stream'
           }
         }
       end
@@ -89,10 +88,9 @@ module LambdaFunction
         {
           'isBase64Encoded' => false,
           'statusCode' => code,
-          'statusDescription' => code.to_s,
           'body' => { error: error, detail: detail }.to_json,
           'headers' => {
-            'content-type' => 'application/json'
+            'Content-Type' => 'application/json'
           }
         }
       end
