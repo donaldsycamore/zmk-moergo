@@ -31,7 +31,7 @@ let
     name = "deps-image";
     fromImage = baseImage;
     # FIXME: can zephyr.modules be in zmk's buildInputs without causing trouble?
-    contents = lib.singleton (referToPackages "deps-refs" (zmk.buildInputs ++ zmk.nativeBuildInputs ++ zephyr.modules));
+    contents = lib.singleton (referToPackages "deps-refs" (zmk.buildInputs ++ zmk.nativeBuildInputs ++ zmk.zephyrModuleDeps));
   };
 
   zmkCompileScript = writeShellScriptBin "compileZmk" ''

@@ -19,6 +19,12 @@ let
     # TODO: this was required but not in shell.nix
     pykwalify
   ]);
+
+  requiredZephyrModules = [
+    "cmsis" "hal_nordic" "tinycrypt" "littlefs"
+  ];
+
+  zephyrModuleDeps = builtins.filter (x: builtins.elem x.name requiredZephyrModules) zephyr.modules;
 in
 
 stdenv.mkDerivation {
@@ -56,7 +62,7 @@ stdenv.mkDerivation {
     # TODO: maybe just use a cross environment for this gcc
     "-DCMAKE_C_COMPILER=${gcc-arm-embedded}/bin/arm-none-eabi-gcc"
     "-DCMAKE_CXX_COMPILER=${gcc-arm-embedded}/bin/arm-none-eabi-g++"
-    "-DZEPHYR_MODULES=${lib.concatStringsSep ";" zephyr.modules}"
+    "-DZEPHYR_MODULES=${lib.concatStringsSep ";" zephyrModuleDeps}"
   ];
 
   nativeBuildInputs = [ cmake ninja python dtc gcc-arm-embedded ];
@@ -66,4 +72,6 @@ stdenv.mkDerivation {
     mkdir $out
     cp zephyr/zmk.uf2 $out
   '';
+
+  passthru = { inherit zephyrModuleDeps; };
 }

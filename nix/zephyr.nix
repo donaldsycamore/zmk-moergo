@@ -33,7 +33,6 @@ stdenv.mkDerivation {
   '';
 
   passthru = {
-    # TODO: omit tools, only provide modules
     modules = map (p: p.src) (lib.attrValues (removeAttrs projects ["zephyr"]));
   };
 }
