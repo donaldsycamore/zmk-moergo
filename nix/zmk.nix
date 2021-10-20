@@ -2,6 +2,7 @@
 , cmake, ninja, dtc, gcc-arm-embedded
 , zephyr
 , board ? "glove80_lh"
+, shield ? null
 }:
 
 
@@ -63,7 +64,8 @@ stdenv.mkDerivation {
     "-DCMAKE_C_COMPILER=${gcc-arm-embedded}/bin/arm-none-eabi-gcc"
     "-DCMAKE_CXX_COMPILER=${gcc-arm-embedded}/bin/arm-none-eabi-g++"
     "-DZEPHYR_MODULES=${lib.concatStringsSep ";" zephyrModuleDeps}"
-  ];
+  ] ++
+  (lib.optional (shield != null) "-DSHIELD=${shield}");
 
   nativeBuildInputs = [ cmake ninja python dtc gcc-arm-embedded ];
   buildInputs = [ zephyr ];

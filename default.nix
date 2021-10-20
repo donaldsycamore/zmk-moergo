@@ -24,6 +24,10 @@ makeScope newScope (self: with self; {
 
   zmk = callPackage ./nix/zmk.nix { };
 
+  zmk_settings_reset = zmk.override {
+    shield = "settings_reset";
+  };
+
   zmk_right = zmk.override {
     board = "glove80_rh";
   };
