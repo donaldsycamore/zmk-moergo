@@ -10,10 +10,10 @@
 
 / {
 	model = "glove80_rh";
-	compatible = "glove80_rh"; 
+	compatible = "glove80_rh";
 
 	chosen {
-        zmk,underglow = &led_strip;	
+        zmk,underglow = &led_strip;
 	};
 
 	leds {
@@ -33,15 +33,15 @@
 
 	vbatt-divider {
 		compatible = "zmk,battery-voltage-divider";
-		label = "BATTERY"; 
-		io-channels = <&adc 5>; 
+		label = "BATTERY";
+		io-channels = <&adc 5>;
 		output-ohms = <820000>; /** Double check that this is right */
-		full-ohms = <(1500000 + 820000)>; 
-	};	
+		full-ohms = <(1500000 + 820000)>;
+	};
 
 	vbatt-vddh {
 		compatible = "zmk,battery-nrf-vddh";
-		label = "BATTERY-VDDH"; 
+		label = "BATTERY-VDDH";
 	};
 };
 
@@ -60,10 +60,10 @@
 
 		/* SPI */
 		reg = <0>; /* ignored, but necessary for SPI bindings */
-		spi-max-frequency = <4000000>;
+		spi-max-frequency = <2000000>;
 
 		/* WS2812 */
-		chain-length = <1>; /* currently no LED on RH; set to 1 just in case */
+		chain-length = <40>;
 		spi-one-frame = <0x70>;
 		spi-zero-frame = <0x40>;
 	};
