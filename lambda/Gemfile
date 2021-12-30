@@ -1,2 +1,4 @@
 source 'https://rubygems.org'
 gem 'aws_lambda_ric'
+gem 'faraday'
+gem 'faraday_middleware'
