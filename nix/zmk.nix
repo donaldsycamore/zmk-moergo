@@ -74,7 +74,7 @@ stdenv.mkDerivation {
 
   installPhase = ''
     mkdir $out
-    cp zephyr/zmk.uf2 $out
+    cp zephyr/zmk.{uf2,hex,bin,elf} $out
   '';
 
   passthru = { inherit zephyrModuleDeps; };
