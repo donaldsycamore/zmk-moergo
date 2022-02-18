@@ -82,12 +82,12 @@
 
 &kscan0 {
 	row-gpios
-		= <&gpio0 26 GPIO_OPEN_SOURCE> // RH ROW1
-		, <&gpio0 5 GPIO_OPEN_SOURCE> // RH ROW2
-		, <&gpio0 7 GPIO_OPEN_SOURCE> // RH ROW3
-		, <&gpio1 8 GPIO_OPEN_SOURCE> // RH ROW4
-		, <&gpio0 11 GPIO_OPEN_SOURCE> // RH ROW5
-		, <&gpio0 12 GPIO_OPEN_SOURCE> // RH ROW6
+		= <&gpio0 26 GPIO_ACTIVE_HIGH> // RH ROW1
+		, <&gpio0 5 GPIO_ACTIVE_HIGH> // RH ROW2
+		, <&gpio0 7 GPIO_ACTIVE_HIGH> // RH ROW3
+		, <&gpio1 8 GPIO_ACTIVE_HIGH> // RH ROW4
+		, <&gpio0 11 GPIO_ACTIVE_HIGH> // RH ROW5
+		, <&gpio0 12 GPIO_ACTIVE_HIGH> // RH ROW6
 		;
 	col-gpios
 		= <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // RH Thumb
