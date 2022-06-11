@@ -7,12 +7,13 @@ Nix makes setup significantly easier. With this approach West is not needed. You
 # To build a target 
 In ZMK root directory,
 
-    nix-build -A *target*
+    nix-build -I nixpkgs=channel:nixos-22.05 -A glove80_v0_left
 	
-An example is 
-    nix-build -A glove80_left
+Two examples are 
+    nix-build -I nixpkgs=channel:nixos-22.05 -A glove80_left -o left
+	nix-build -I nixpkgs=channel:nixos-22.05 -A glove80_right -o right
 	
-
+	
 # Adding new targets
 Edit default.nix and add an target based on zmk
 
