@@ -23,9 +23,9 @@ CONFIG_FLASH_PAGE_LAYOUT=y
 CONFIG_FLASH_MAP=y
 
 # Enable 32kHz crystal
-# [SC] Need to check to see if they are necessary. Pete's ZMK message suggests it isn't
-# CONFIG_CLOCK_CONTROL_NRF_K32SRC_XTAL=y
-# CONFIG_CLOCK_CONTROL_NRF_K32SRC_150PPM=y
+# Pete suggests CONFIG_CLOCK_CONTROL_NRF_K32SRC_XTAL is turned on default, but we will explicitly declare this for safety
+CONFIG_CLOCK_CONTROL_NRF_K32SRC_XTAL=y
+CONFIG_CLOCK_CONTROL_NRF_K32SRC_150PPM=y
 
 # Enable RGB underglow
 CONFIG_ZMK_RGB_UNDERGLOW=y
