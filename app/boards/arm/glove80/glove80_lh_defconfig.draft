@@ -64,7 +64,7 @@ CONFIG_ZMK_BACKLIGHT_AUTO_OFF_USB=y
 CONFIG_ZMK_HID_REPORT_TYPE_NKRO=y
 CONFIG_ZMK_HID_CONSUMER_REPORT_USAGES_BASIC=y
 
-# Default to no` logging
+# Default to no logging
 CONFIG_ZMK_USB_LOGGING=n
 
 # Turn on debugging to disable optimization
