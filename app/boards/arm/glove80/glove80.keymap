@@ -33,12 +33,12 @@
 
         // MAGIC is currently bound to the same as LAYER - these will be fixed later
         bindings = <
-          &kp F1      &kp F2      &kp F3      &kp F4      &kp F5                                                                                         &kp F6  &kp F7      &kp F8      &kp F9      &kp F10
-          &kp EQUAL   &kp N1      &kp N2      &kp N3      &kp N4      &kp N5                                                                     &kp N6  &kp N7  &kp N8      &kp N9      &kp N0      &kp MINUS
-          &kp TAB     &kp Q       &kp W       &kp E       &kp R       &kp T                                                                      &kp Y   &kp U   &kp I       &kp O       &kp P       &kp BSLH
-          &kp ESC     &kp A       &kp S       &kp D       &kp F       &kp G                                                                      &kp H   &kp J   &kp K       &kp L       &kp SEMI    &kp SQT
-          &kp GRAVE   &kp Z       &kp X       &kp C       &kp V       &kp B   &kp LSHFT   &kp LCTRL   &mo LOWER  &kp LGUI  &kp RCTRL &kp RSHFT   &kp N   &kp M   &kp COMMA   &kp DOT     &kp FSLH    &kp PG_UP
-          &mo LOWER   &kp HOME    &kp END     &kp LEFT    &kp RIGHT           &kp BSPC    &kp DEL     &kp LALT   &kp RALT  &kp RET  &kp SPACE            &kp UP  &kp DOWN    &kp LBKT    &kp RBKT    &kp PG_DN
+          &bt BT_SEL 0      &bt BT_SEL 1        &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4                                                                                        &kp F6  &kp F7      &kp F8      &kp F9      &kp F10
+          &bt BT_CLR        &bt BT_CLR          &out OUT_USB    &out OUT_BLE    &out OUT_TOG      &ext_power EP_ON                                                                     &kp N6  &kp N7  &kp N8      &kp N9      &kp N0      &kp MINUS
+          &kp TAB     &kp Q       &kp W       &kp E       &rgb_ug RGB_COLOR_HSB(60,100,100)                                   &ext_power EP_OFF                                                                    &kp Y   &kp U   &kp I       &kp O       &kp P       &kp BSLH
+          &kp ESC     &kp A       &kp S       &kp D       &rgb_ug RGB_COLOR_HSB(240,100,100)                                   &rgb_ug RGB_TOG                                                                      &kp H   &kp J   &kp K       &kp L       &kp SEMI    &kp SQT
+          &kp GRAVE   &kp Z       &kp X       &kp C       &rgb_ug RGB_COLOR_HSB(0,100,100)                                   &rgb_ug RGB_EFF   &rgb_ug RGB_BRI &rgb_ug RGB_HUI &rgb_ug RGB_SAI  &kp LGUI  &kp RCTRL &kp RSHFT   &kp N   &kp M   &kp COMMA   &kp DOT     &kp FSLH    &kp PG_UP
+          &mo LOWER   &kp HOME    &kp END     &kp LEFT    &rgb_ug RGB_COLOR_HSB(0,1,100)                                                 &rgb_ug RGB_BRD &rgb_ug RGB_HUD &rgb_ug RGB_SAD  &kp RALT  &kp RET  &kp SPACE            &kp UP  &kp DOWN    &kp LBKT    &kp RBKT    &kp PG_DN
           >;
       };
 

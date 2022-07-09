@@ -89,10 +89,13 @@
 };
 */
 
+
 /* For right hand, the columns are offset by 7 */ 
+/* [SC} Hacked as Central
 &default_transform {
 	col-offset = <7>;
 };
+*/
 
 &kscan0 {
 	row-gpios

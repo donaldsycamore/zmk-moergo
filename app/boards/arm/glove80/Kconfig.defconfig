@@ -16,6 +16,10 @@ if BOARD_GLOVE80_RH
 config BOARD
 	default "glove80 rh"
 
+# HACK FOR TESTING RH
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+	default y
+
 config ZMK_KEYBOARD_NAME
 	default "Glove80 Right"
 endif # BOARD_GLOVE80_RH
