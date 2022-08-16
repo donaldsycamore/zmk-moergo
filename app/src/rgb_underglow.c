@@ -217,6 +217,36 @@ static void zmk_led_write_pixels() {
     led_strip_update_rgb(led_strip, led_buffer, STRIP_NUM_PIXELS);
 }
 
+//uint8_t underglow_ble_state[] = DT_PROP(UNDERGLOW_INDICATORS, ble_state);
+
+#define UNDERGLOW_INDICATORS DT_NODELABEL(underglow_indicators)
+
+void zmk_led_battery_level(int bat_level, uint8_t* addresses, int addresses_len) {
+    const struct led_rgb red = {r : CONFIG_ZMK_RGB_UNDERGLOW_BRT_MAX, g : 0, b : 0};
+    const struct led_rgb yellow = {
+        r : CONFIG_ZMK_RGB_UNDERGLOW_BRT_MAX,
+        g : CONFIG_ZMK_RGB_UNDERGLOW_BRT_MAX,
+        b : 0
+    };
+    const struct led_rgb green = {r : 0, g : CONFIG_ZMK_RGB_UNDERGLOW_BRT_MAX, b : 0};
+
+    static struct led_rgb bat_colour = red;
+
+    if (bat_level > 20)
+        bat_colour = yellow;
+    if (bat_level > 40)
+        bat_colour = green;
+
+    // originally, six levels, 0 .. 100
+
+    for (int i = 0; i < addresses_len; i++) {
+        int min_level = (i * 100) / (addresses_len - 1);
+        if (bat_level >= min_level) {
+            status_pixels[addresses[i]] = bat_colour;
+        }
+    }
+}
+
 static int zmk_led_generate_status() {
     for (int i = 0; i < STRIP_NUM_PIXELS; i++) {
         status_pixels[i] = (struct led_rgb){r : 0, g : 0, b : 0};
@@ -230,35 +260,15 @@ static int zmk_led_generate_status() {
     };
     const struct led_rgb green = {r : 0, g : CONFIG_ZMK_RGB_UNDERGLOW_BRT_MAX, b : 0};
 
-/*
-  MoErgo 18 LEDs (prototype)
-  f1 f2 f3 f4 f5 f6
-  14 11  8  5  2
-  15 12  9  6  3  0
-  16 13 10  7  4  1
-
-  17
-
-  MoErgo 40 LEDs
-
-  34 28 22 16 10
-  35 29 23 17 11 6
-  36 30 24 18 12 7
-  37 31 25 19 13 8
-  38 32 26 20 14 9
-  39 33 27 21 15
-                0 1 2
-                3 4 5
-*/
 #if IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
     zmk_leds_flags_t led_flags = zmk_leds_get_current_flags();
 
     if (led_flags & ZMK_LED_CAPSLOCK_BIT)
-        status_pixels[8] = green;
+        status_pixels[DT_PROP(UNDERGLOW_INDICATORS, capslock)] = green;
     if (led_flags & ZMK_LED_NUMLOCK_BIT)
-        status_pixels[5] = green;
+        status_pixels[DT_PROP(UNDERGLOW_INDICATORS, numlock)] = green;
     if (led_flags & ZMK_LED_SCROLLLOCK_BIT)
-        status_pixels[2] = green;
+        status_pixels[DT_PROP(UNDERGLOW_INDICATORS, scrolllock)] = green;
 
     if (zmk_ble_active_profile_is_open())
         status_pixels[14] = yellow;
@@ -266,46 +276,16 @@ static int zmk_led_generate_status() {
         status_pixels[14] = green;
 #endif
 
-    int bat0 = zmk_battery_state_of_charge();
-    static struct led_rgb bat0_colour = red;
-    if (bat0 > 20)
-        bat0_colour = yellow;
-    if (bat0 > 40)
-        bat0_colour = green;
-
-    if (bat0 >= 0)
-        status_pixels[15] = bat0_colour;
-    if (bat0 >= 20)
-        status_pixels[12] = bat0_colour;
-    if (bat0 >= 40)
-        status_pixels[9] = bat0_colour;
-    if (bat0 >= 60)
-        status_pixels[6] = bat0_colour;
-    if (bat0 >= 80)
-        status_pixels[3] = bat0_colour;
-    if (bat0 >= 100)
-        status_pixels[0] = bat0_colour;
+    zmk_led_battery_level(
+        zmk_battery_state_of_charge(),
+        DT_PROP(UNDERGLOW, bat_lhs),
+        DT_PROP_LEN(UNDERGLOW, bat_lhs));
 
 #if IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-    int bat1 = zmk_battery_state_of_peripheral_charge();
-    static struct led_rgb bat1_colour = red;
-    if (bat1 > 20)
-        bat1_colour = yellow;
-    if (bat1 > 40)
-        bat1_colour = green;
-
-    if (bat1 >= 0)
-        status_pixels[16] = bat1_colour;
-    if (bat1 >= 20)
-        status_pixels[13] = bat1_colour;
-    if (bat1 >= 40)
-        status_pixels[10] = bat1_colour;
-    if (bat1 >= 60)
-        status_pixels[7] = bat1_colour;
-    if (bat1 >= 80)
-        status_pixels[4] = bat1_colour;
-    if (bat1 >= 100)
-        status_pixels[1] = bat1_colour;
+    zmk_led_battery_level(
+        zmk_battery_state_of_peripheral_charge(),
+        DT_PROP(UNDERGLOW, bat_rhs),
+        DT_PROP_LEN(UNDERGLOW, bat_rhs));
 #endif
 
     int16_t blend = 256;
